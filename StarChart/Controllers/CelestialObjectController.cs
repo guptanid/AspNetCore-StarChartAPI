@@ -26,9 +26,7 @@ namespace StarChart.Controllers
             {
                 return NotFound();
             }
-            var satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id);
-            if (satellites != null && satellites.Any())
-                celestialObject.Satellites.AddRange(satellites);
+            celestialObject.Satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id).ToList();
             return Ok(celestialObject);
         }
 
@@ -43,9 +41,7 @@ namespace StarChart.Controllers
             }
             foreach (var celestialObject in celestialObjects)
             {
-                var satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id);
-                if (satellites != null && satellites.Any())
-                    celestialObject.Satellites.AddRange(satellites);
+                celestialObject.Satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id).ToList();
             }
             return Ok(celestialObjects);
         }
@@ -58,9 +54,7 @@ namespace StarChart.Controllers
 
             foreach (var celestialObject in _context.CelestialObjects)
             {
-                var satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id);
-                if (satellites != null && satellites.Any())
-                    celestialObject.Satellites.AddRange(satellites);
+                celestialObject.Satellites = _context.CelestialObjects.Where(c => c.OrbitedObjectId != null && c.OrbitedObjectId == celestialObject.Id).ToList();
             }
             return Ok(_context.CelestialObjects);
         }
