@@ -46,7 +46,7 @@ namespace StarChart.Controllers
             return Ok(celestialObjects);
         }
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult GetAll()
         {
             if (_context.CelestialObjects == null || !_context.CelestialObjects.Any())
